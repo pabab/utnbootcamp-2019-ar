@@ -2,18 +2,16 @@ import CANNON from 'cannon';
 import * as THREE from 'three'
 
 
-
-
 export class PhysicsHelper {
     constructor(scene) {
         this.scene = scene;
-        
+
         // Setup our world
         this.world = new CANNON.World();
-        this.world.gravity.set(0, -9.82, 0); // m/s²
+        this.world.gravity.set(0, -5, 0); // m/s²
 
         this.debugMeshes = new THREE.Group();
-        this.debugMeshes.visible = false;
+        this.debugMeshes.visible = true;
         this.scene.add(this.debugMeshes);
         this.bodyMeshes = [];
 
@@ -25,10 +23,25 @@ export class PhysicsHelper {
         var body = new CANNON.Body({
             mass: args['mass'] // mass == 0 makes the body static
         });
-        var shape = new CANNON.Box(new CANNON.Vec3(args['width'], args['height'], args['depth']));
+        var width = args['width'] || 1;
+        var height = args['height'] || 1;
+        var depth = args['depth'] || 1;
+        var shape = new CANNON.Box(new CANNON.Vec3(width/2, height/2, depth/2));
         body.addShape(shape);
+        var pos = args['position']||new CANNON.Vec3(0,0,0);
+        body.position.set(pos.x,pos.y, pos.z);
+        console.log(body.position)
         this.world.addBody(body);
-        this.bodyMeshes.push({body: body, mesh: mesh});
+        
+        
+        var boxGeometry = new THREE.BoxGeometry(width, height, depth);
+        var geo = new THREE.WireframeGeometry( boxGeometry ); // or WireframeGeometry
+        var mat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 2 } );
+        var wireframe = new THREE.LineSegments( geo, mat );
+
+        this.bodyMeshes.push({body: body, mesh: mesh, debugMesh: wireframe});
+        this.debugMeshes.add(wireframe)
+        // debug mesh
         return body;
     }
 
@@ -39,7 +52,13 @@ export class PhysicsHelper {
             shape: new CANNON.Sphere(args['radius'])
         });
         this.world.addBody(body);
-        this.bodyMeshes.push({body: body, mesh: mesh});
+
+        var sphereGeometry = new THREE.SphereGeometry(args['radius']||1, 10, 10);
+        var geo = new THREE.WireframeGeometry( sphereGeometry ); // or WireframeGeometry
+        var mat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 2 } );
+        var wireframe = new THREE.LineSegments( geo, mat );
+        this.bodyMeshes.push({body: body, mesh: mesh, debugMesh: wireframe});;
+        this.debugMeshes.add(wireframe)
         return body;
     }
 
@@ -52,6 +71,8 @@ export class PhysicsHelper {
         for(let i = 0; i < this.bodyMeshes.length; i++){
             this.bodyMeshes[i].mesh.position.copy(this.bodyMeshes[i].body.position);
             this.bodyMeshes[i].mesh.quaternion.copy(this.bodyMeshes[i].body.quaternion);
+            this.bodyMeshes[i].debugMesh.position.copy(this.bodyMeshes[i].body.position);
+            this.bodyMeshes[i].debugMesh.quaternion.copy(this.bodyMeshes[i].body.quaternion);
         }
     }
   

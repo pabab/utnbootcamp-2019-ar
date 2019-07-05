@@ -37,11 +37,19 @@ function init() {
     // Create a sphere
     world = new PhysicsHelper(scene)
     
-    var geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2 );
+    var geometry = new THREE.BoxGeometry(0.12, 0.12, 0.12 );
     var material = new THREE.MeshNormalMaterial();
     var mesh = new THREE.Mesh(geometry, material)
     scene.add(mesh)
 
+    var mesh2 = new THREE.Mesh(geometry, material)
+    scene.add(mesh2)
+
+    var mesh3 = new THREE.Mesh(geometry, material)
+    scene.add(mesh3)
+
+    var mesh4 = new THREE.Mesh(geometry, material)
+    scene.add(mesh4)
 
     var planeGeometry = new THREE.BoxGeometry(1, 0.01, 1);
     var planeMesh = new THREE.Mesh(planeGeometry, material);
@@ -49,8 +57,11 @@ function init() {
     
     
     world.createBoxBody(planeMesh, {mass: 0, width: 1, height: 0.01, depth: 1});
-    world.createSphereBody(mesh, {radius: 0.01, mass: 5, position: new CANNON.Vec3(0, 2, 0)});
-
+    world.createBoxBody(mesh, {mass: 1, width: 0.12, height: 0.12, depth: 0.12, position: new CANNON.Vec3(0, 2, 0)});
+    world.createBoxBody(mesh2, {mass: 1, width: 0.12, height: 0.12, depth: 0.12, position: new CANNON.Vec3(0, 3, 0)});
+    world.createBoxBody(mesh3, {mass: 1, width: 0.12, height: 0.12, depth: 0.12, position: new CANNON.Vec3(0, 4, 0)});
+    var b = world.createSphereBody(mesh4, {radius: 0.1, mass: 5, position: new CANNON.Vec3(0, 2, 0)});
+    b.velocity.set(0.1, 0, 0)
 
 
     renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -71,9 +82,16 @@ init();
     }
     //console.log("Sphere z position: " + sphereBody.position.z);
     lastTime = time;
-    renderer.render(scene, camera)
+    if(renderer)renderer.render(scene, camera)
   })();
 
 
+// Event listeners
+function resize() {
+    camera.aspect = innerWidth / innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(innerWidth, innerHeight)
+}
 
+addEventListener('resize', resize)
 
