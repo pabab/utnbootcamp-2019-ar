@@ -1,0 +1,352 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 7555,
+      "max": [
+        16.445558547973633,
+        11.449485778808594,
+        171.971435546875
+      ],
+      "min": [
+        -16.445562362670898,
+        -20.616220474243164,
+        142.96282958984375
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 90660,
+      "componentType": 5126,
+      "count": 7555,
+      "max": [
+        0.99939590692520142,
+        0.99995821714401245,
+        0.99998509883880615
+      ],
+      "min": [
+        -0.99939590692520142,
+        -0.99997550249099731,
+        -0.99950599670410156
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 7555,
+      "max": [
+        0.99988549947738647,
+        0.99960416555404663,
+        0.99694383144378662,
+        1
+      ],
+      "min": [
+        -1,
+        -0.99923074245452881,
+        -0.99800956249237061,
+        -1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 7555,
+      "max": [
+        0.99462902545928955,
+        0.98297101259231567
+      ],
+      "min": [
+        0.0059810001403093338,
+        0.0014649999793618917
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 34830,
+      "max": [
+        7554
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 181320,
+      "componentType": 5126,
+      "count": 12634,
+      "max": [
+        59.63189697265625,
+        17.613002777099609,
+        147.69760131835938
+      ],
+      "min": [
+        -59.63189697265625,
+        -17.340099334716797,
+        0.029093999415636063
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 332928,
+      "componentType": 5126,
+      "count": 12634,
+      "max": [
+        0.99993157386779785,
+        0.99997836351394653,
+        0.99974435567855835
+      ],
+      "min": [
+        -0.99970853328704834,
+        -0.99999535083770752,
+        -0.99978411197662354
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 120880,
+      "componentType": 5126,
+      "count": 12634,
+      "max": [
+        1,
+        0.9998551607131958,
+        0.99940669536590576,
+        1
+      ],
+      "min": [
+        -1,
+        -0.99998617172241211,
+        -0.9994128942489624,
+        -1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 60440,
+      "componentType": 5126,
+      "count": 12634,
+      "max": [
+        0.99755901098251343,
+        0.99911600351333618
+      ],
+      "min": [
+        0.003223000094294548,
+        0.0034179999493062496
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 139320,
+      "componentType": 5125,
+      "count": 67584,
+      "max": [
+        12633
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "SSLeaker (https://sketchfab.com/SSLeaker)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/stranger-things-x-fortnite-zombie-c83624ad8bca4b689b6fd049e45039e2",
+      "title": "Stranger Things X Fortnite Zombie"
+    },
+    "generator": "Sketchfab-5.70.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 409656,
+      "byteOffset": 0,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 161512,
+      "byteOffset": 409656,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 484536,
+      "byteOffset": 571168,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 323024,
+      "byteOffset": 1055704,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1378728,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/M_Med-Weird_Objects_Creature_He_baseColor.png"
+    },
+    {
+      "uri": "textures/M_Med_Weird_Objects_Creature_Bo_baseColor.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "M_Med-Weird_Objects_Creature_He",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.59999999999999998
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "M_Med_Weird_Objects_Creature_Bo",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 1,
+          "texCoord": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.59999999999999998
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TANGENT": 7,
+            "TEXCOORD_0": 8
+          },
+          "indices": 9,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "RootNode (gltf orientation matrix)",
+      "rotation": [
+        -0.70710678118654746,
+        -0,
+        -0,
+        0.70710678118654757
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "RootNode (model correction matrix)"
+    },
+    {
+      "children": [
+        3,
+        4
+      ],
+      "name": "Stranger Things X Fortnite Zombie.obj.cleaner.materialmerger.gles"
+    },
+    {
+      "mesh": 0,
+      "name": ""
+    },
+    {
+      "mesh": 1,
+      "name": ""
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "OSG_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    }
+  ]
+}
+
