@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
 class Enemy{
@@ -12,7 +13,7 @@ class Enemy{
 
     initPosition(){
         var x = -1+Math.random()*2;
-        var z = -50-(50*Math.random()); 
+        var z = -50-(50*Math.random())
         this.mesh.position.set(x, 0, z)
     }
 
@@ -81,6 +82,9 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight)
     document.body.appendChild(renderer.domElement)
 
+    var light = new THREE.AmbientLight( 0xcfcfcf );
+    scene.add(light)
+
     geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2 );
     material = new THREE.MeshNormalMaterial();
 
@@ -89,6 +93,18 @@ function init() {
     mesh.position.y = 0
     scene.add(mesh)
     
+    var loader = new GLTFLoader();
+
+    var dodge_mesh = null;
+    loader.load( 'assets/models/dodge/dodge.gltf', function ( gltf ) {
+        dodge_mesh = gltf.scene;
+        dodge_mesh.scale.set(0.07, 0.07, 0.07)
+        scene.add( dodge_mesh );
+        console.log("carge")
+    }, undefined, function ( error ) {
+        console.error( error );
+    } );
+
 
     var boxPlayer = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
     var boxEnemy = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
@@ -137,14 +153,17 @@ function init() {
             mesh.position.x += cubeVelx * elapsed;
             mesh.position.z += cubeVelz * elapsed;
 
-            if(mesh.position.x <= (-1+boxPlayer.getSize().x)){
-                mesh.position.x = (-1+boxPlayer.getSize().x);
+            var size = new THREE.Vector3(0,0,0);
+            boxPlayer.getSize(size)
+            if(mesh.position.x <= (-1+size.x)){
+                mesh.position.x = (-1+size.x);
                 cubeVelx = 0;
-            }else if(mesh.position.x >= 1-boxPlayer.getSize().x){
-                mesh.position.x = 1-boxPlayer.getSize().x;
+            }else if(mesh.position.x >= 1-size.x){
+                mesh.position.x = 1-size.x;
                 cubeVelx = 0;
             }
 
+            if(dodge_mesh) dodge_mesh.position.copy(mesh.position)
             // animate enemies
             enemies.forEach((e)=>{
                 e.update(elapsed)
@@ -159,9 +178,21 @@ function init() {
                     document.getElementById("game_over").style.display="block";
                 }
             });
-
+            
+            mesh.visible = false
+            if(dodge_mesh){
+                dodge_mesh.position.y = -0.07+Math.sin(score*10)*0.002
+                if(cubeVelx>0){
+                    dodge_mesh.setRotationFromAxisAngle ( new THREE.Vector3(0, 1, 0), 3.14-0.1 );
+                }else if(cubeVelx<0){
+                    dodge_mesh.setRotationFromAxisAngle ( new THREE.Vector3(0, 1, 0), 3.14+0.1 );
+                }else{
+                    dodge_mesh.setRotationFromAxisAngle ( new THREE.Vector3(0, 1, 0), 3.14 );
+                }
+            }
+          
             // update score
-            document.getElementById("score").innerHTML = Math.floor(score)
+            //document.getElementById("score").innerHTML = Math.floor(score)
         }
         
 
