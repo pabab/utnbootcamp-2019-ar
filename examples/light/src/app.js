@@ -29,9 +29,12 @@ function init() {
         10
     )
     camera.position.z = 5
+    camera.position.y = 1
+    camera.lookAt(new THREE.Vector3(0, 0, 0))
 
-    const radius = 0.7
-    const tubeRadius = 0.3
+   
+    const radius = 0.5
+    const tubeRadius = 0.2
     const radialSegments = 8
     const tubularSegments = 24
     const geometry = new THREE.TorusBufferGeometry(radius, tubeRadius, radialSegments, tubularSegments)
@@ -39,13 +42,33 @@ function init() {
     material = new THREE.MeshPhongMaterial({color: 0xccfc0c})
     mesh = new THREE.Mesh(geometry, material)
     scene.add(mesh)
+    mesh.castShadow = true;
 
-    var light = new THREE.DirectionalLight( 0xffffff );
-    light.position.set( -1, 1, 1 ).normalize();
+    var planeMaterial = new THREE.MeshPhongMaterial({color: 0xffccff})
+    var planeGeom = new THREE.BoxGeometry(5, 0.1, 5);
+    var plane = new THREE.Mesh(planeGeom, planeMaterial)
+    plane.receiveShadow = true;
+    plane.castShadow = true;
+
+    plane.position.y = -1;
+    scene.add(plane)
+
+    var light = new THREE.PointLight( 0xffffff );
+    light.position.set( -2, 5, 2 ).normalize();
+    light.castShadow = true;   
+    light.shadowDarkness = 0.5;
+    light.shadowCameraVisible = true;
+
     scene.add(light);
 
+
+    var ambientLight = new THREE.AmbientLight( 0x333333 );
+    scene.add(ambientLight)
+        
     renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.shadowMapEnabled = true;
+    renderer.shadowMapSoft = true;
     document.body.appendChild(renderer.domElement)
 }
 
